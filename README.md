@@ -967,6 +967,419 @@ public class ShoppingBasket
 ```
 </details>
 
+## Test 6
+<Details>
+	<summary>Test 6</summary>
+ ### Frage 1
+ <img width="763" height="316" alt="image" src="https://github.com/user-attachments/assets/34676c78-0af1-4a45-a31d-a68d7f3538cc" />
+
+### Frage 2 ShoppingBasket
+```java
+import java.text.NumberFormat;
+import java.util.*;
+
+public class Catalog {
+    private Map<String, Integer> products = new HashMap<>();
+
+    public void addProduct(String name, int priceInCent) {
+        if (products.containsKey(name)) {
+            System.out.println(name + " already exists");
+        } else {
+            products.put(name, priceInCent);
+        }
+    }
+
+    public void updateProduct(String name, int priceInCent) {
+        if (!products.containsKey(name)) {
+            System.out.println(name + " does not exist");
+        } else {
+            products.put(name, priceInCent);
+        }
+    }
+
+    public void deleteProduct(String name) {
+        if (!products.containsKey(name)) {
+            System.out.println(name + " does not exist");
+        } else {
+            products.remove(name);
+        }
+    }
+
+    public void showProduct(String name) {
+        if (!products.containsKey(name)) {
+            System.out.println(name + " does not exist");
+            return;
+        }
+        int priceInCent = products.get(name);
+        double priceInEuro = priceInCent / 100.0;
+
+        NumberFormat nf = NumberFormat.getNumberInstance(Locale.GERMANY);
+        nf.setMinimumFractionDigits(2);
+        nf.setMaximumFractionDigits(2);
+        String formattedNumber = nf.format(priceInEuro);
+
+        // Eurozeichen direkt anhängen
+        System.out.println(name + ": " + formattedNumber + "€");
+    }
+
+    public int getProductPrice(String name) {
+        if (!products.containsKey(name)) {
+            System.out.println(name + " does not exist");
+            return -1;
+        }
+        return products.get(name);
+    }
+}
+
+
+ ```
+
+</details>
+
+## Test 7
+<Details>
+  <summary>Test 7</summary>
+Dieser Test wurde bei uns nicht bewertet, also reine Übung!!!
+  
+</details>
+
+## Test 8
+<Details>
+  <summary>Test 8</summary>
+
+  ### Frage 1
+  <img width="1024" height="529" alt="image" src="https://github.com/user-attachments/assets/579d1b35-250a-45a7-93d8-a6b54b45c02f" />
+
+  ### Frage 2
+  ```java
+import java.util.ArrayList;
+import java.util.Random;
+
+public class TiringDuck implements IDuck {
+
+    private static final int SPEED = 10;
+    private final String name;
+    private int distance=0;
+    private int fatigue =0;
+    private final Random random = new Random();
+    
+    public TiringDuck(String name) {
+        super();
+        this.name = name;
+    }
+    public String getName() {
+        return name;
+    }
+    public int getDistance() {
+        return distance;
+    }
+    public int getFatigue() {
+        return fatigue;
+    }
+    public void run() {
+        fatigue+= 2*random.nextDouble()*SPEED;
+        distance += SPEED - SPEED* ( 1 - 100.0/(100+fatigue));
+    }
+    public String showData() {
+        return name+" Distance "+distance;
+    }
+}
+
+public class RandomDuck implements IDuck {
+
+    private static final int SPEED = 10;
+    private final String name; 
+    private int distance=0;
+    private final Random random = new Random();
+    
+    public RandomDuck(String name) {
+        super();
+        this.name = name;
+    }
+    public void run() {
+        distance += SPEED * random.nextDouble();
+    }
+    public String getName() {
+        return name;
+    }
+    public int getDistance() {
+        return distance;
+    }
+    public String showData() {
+        return name+" Distance"+distance;
+    }
+    
+}
+
+public class DuckRace {
+    private final int RACE_DISTANCE = 100;
+    private ArrayList<IDuck> Ducks = new ArrayList<>();
+
+    public void race() {
+        while (!hasWinner()) {
+            ducksRun();
+        }
+    }
+
+    private boolean hasWinner() {
+        ArrayList<IDuck> bestDucks = new ArrayList<>();
+        int max = 0;
+        for (IDuck d : Ducks) {
+            if (d.getDistance() > RACE_DISTANCE) {
+                if (d.getDistance() > max) {
+                    max = d.getDistance();
+                    bestDucks = new ArrayList<>();
+                    bestDucks.add(d);
+                } else if (d.getDistance() == max) {
+                    bestDucks.add(d);
+                }
+            }
+        }
+        if (!bestDucks.isEmpty()) {
+            for (IDuck d: bestDucks) {
+                System.out.println(d.showData());
+            }
+        }
+
+        return !bestDucks.isEmpty();
+    }
+
+    private void ducksRun() {
+        for (IDuck d : Ducks) {
+            d.run();
+        }
+    }
+    
+    public void addDuck (IDuck d) {
+        Ducks.add(d);
+    }
+}
+
+public class SittingDuck implements IDuck {
+    private final String name;
+    private int distance = 0;
+    
+    public SittingDuck(String name){
+        this.name = name;
+    }
+    public void run() {
+        
+    }
+    public String getName() {
+        return name;
+    }
+    public int getDistance() {
+        return distance;
+    }
+    public String showData() {
+        return name+" Distance"+distance;
+    }
+}
+
+public interface IDuck
+{
+    void run();
+    int getDistance();
+    String showData();
+}
+
+```
+### Frage 3
+<img width="1019" height="278" alt="image" src="https://github.com/user-attachments/assets/4e5229e4-8cfa-49d2-9d33-e0ddf7b957e9" />
+
+### Frage 4
+<img width="1019" height="297" alt="image" src="https://github.com/user-attachments/assets/adddf461-af43-4f2c-9a18-e36355fab3a5" />
+
+### Frage 5
+```java
+public class Do implements IDo {
+    public int doIt() {
+        return 42;
+    }
+}
+
+```
+
+### Frage 6
+<img width="1018" height="277" alt="image" src="https://github.com/user-attachments/assets/bc6807c6-683f-42c5-b529-3e33d57423ed" />
+
+### Frage 7
+```java
+//import Statements für alle Klassen und Interfaces
+import java.util.ArrayList;
+//-----------------------------------------------------------------------------------------
+public class NewsFeed{
+    private ArrayList<IPost> posts;
+
+    public NewsFeed() {
+        posts = new ArrayList<>();
+    }
+
+    public void addPost(IPost post) {
+        posts.add(post);
+    }
+
+    public void show() {
+        for(IPost post : posts) {
+            post.display();
+            System.out.println();   // empty line between posts
+        }
+    }
+}
+//--------------------------------------------------------------------------------------
+public class MessagePost implements IPost {
+    private String username;  // username of the post's author
+    private String message;   // an arbitrarily long, multi-line message
+    private long timestamp;
+    private int likes;
+    private ArrayList<String> comments;
+
+    public MessagePost(String author, String text)    {
+        username = author;
+        message = text;
+        timestamp = System.currentTimeMillis();
+        likes = 0;
+        comments = new ArrayList<>();
+    }
+
+    public void like()   {
+        likes++;
+    }
+
+    public void unlike(){
+        if (likes > 0) {
+            likes--;
+        }
+    }
+
+    public void addComment(String text)    {
+        comments.add(text);
+    }
+
+    public String getText()    {
+        return message;
+    }
+
+    public long getTimeStamp() {
+        return timestamp;
+    }
+
+    public void display() {
+        System.out.println(username);
+        System.out.println(message);
+        System.out.print(timeString(timestamp));
+        
+        if(likes > 0) {
+            System.out.println("  -  " + likes + " people like this.");
+        }
+        else {
+            System.out.println();
+        }
+        
+        if(comments.isEmpty()) {
+            System.out.println("   No comments.");
+        }
+        else {
+            System.out.println("   " + comments.size() + " comment(s). Click here to view.");
+        }
+    }
+
+    private String timeString(long time) {
+        long current = System.currentTimeMillis();
+        long pastMillis = current - time;      // time passed in milliseconds
+        long seconds = pastMillis/1000;
+        long minutes = seconds/60;
+        if(minutes > 0) {
+            return minutes + " minutes ago";
+        }
+        else {
+            return seconds + " seconds ago";
+        }
+    }
+}
+//----------------------------------------------------------------
+public class PhotoPost implements IPost {
+    private String username;  // username of the post's author
+    private String filename;  // the name of the image file
+    private String caption;   // a one line image caption
+    private long timestamp;
+    private int likes;
+    private ArrayList<String> comments;
+
+    public PhotoPost(String author, String filename, String caption){
+        username = author;
+        this.filename = filename;
+        this.caption = caption;
+        timestamp = System.currentTimeMillis();
+        likes = 0;
+        comments = new ArrayList<>();
+    }
+
+    public void like() {
+        likes++;
+    }
+
+    public void unlike()    {
+        if (likes > 0) {
+            likes--;
+        }
+    }
+    public void addComment(String text)  {
+        comments.add(text);
+    }
+
+    public String getImageFile(){
+        return filename;
+    }
+
+    public String getCaption() {
+        return caption;
+    }
+
+    public long getTimeStamp() {
+        return timestamp;
+    }
+
+    public void display()   {
+        System.out.println(username);
+        System.out.println("  [" + filename + "]");
+        System.out.println("  " + caption);
+        System.out.print(timeString(timestamp));
+        
+        if(likes > 0) {
+            System.out.println("  -  " + likes + " people like this.");
+        } else {
+            System.out.println();
+        }
+        if(comments.isEmpty()) {
+            System.out.println("   No comments.");
+        } else {
+            System.out.println("   " + comments.size() + " comment(s). Click here to view.");
+        }
+    }
+    
+    private String timeString(long time){
+        long current = System.currentTimeMillis();
+        long pastMillis = current - time;      // time passed in milliseconds
+        long seconds = pastMillis/1000;
+        long minutes = seconds/60;
+        if(minutes > 0) {
+            return minutes + " minutes ago";
+        }
+        else {
+            return seconds + " seconds ago";
+        }
+    }
+}
+
+public interface IPost
+{
+    void display();
+}
+
+```
+</details>
+
 ## Test 9
 <Details>
   <summary>Test 9</summary>
