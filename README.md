@@ -977,7 +977,8 @@ public class ShoppingBasket
 ## Test 6
 <Details>
 	<summary>Test 6</summary>
- ### Frage 1
+
+### Frage 1
  <img width="763" height="316" alt="image" src="https://github.com/user-attachments/assets/34676c78-0af1-4a45-a31d-a68d7f3538cc" />
 
 ### Frage 2 Catalog
