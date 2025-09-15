@@ -1,7 +1,7 @@
 # Musterlösungen
 >[!IMPORTANT]
->
-> Die Lösungen sind alle geprüft richtig für den Jahrgang I23.
+>UPDATED Variante!!!
+> Die Lösungen sind alle geprüft richtig für den Jahrgang I23 & I24.
 > Je länger dieses Repo vor den falschen Augen geschützt wird, desto länger haben Studierende etwas davon. 
 > Das Durchführen der Tests ist eine gute Übung. Nutzt diese Musterlösung zum Vergleichen, nicht zum Abschreiben.
 > Bei den Multiple-Choice Aufgaben wird die Reihenfolge bei jedem Versuch getauscht, also seid da vorsichtig.
